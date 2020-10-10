@@ -1,27 +1,21 @@
 import React from 'react';
+import './App.css';
+import { HashRouter, Route } from 'react-router-dom';
+import About from './routes/About';
+import Home from './routes/Home';
+import Navigation from './components/Navigation';
+import Detail from './routes/Detail';
 
-class App extends React.Component {
-  state ={
-    isLoading: true,
-    movies: [],
-  };
 
-  componentDidMount() {
-    // 영화데이터 로딩
-    setTimeout(() => {
-      this.setState({ isLoading: false});
-    }, 6000);
-  }
-
-  render() {
-    const { isLoading } = this.state;
-    return (
-    <div>
-      {isLoading ? 'loading...' : 'We are ready'}
-    </div>
-
-    );
-  }
+function App() {
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/movie/:id" component={Detail} />
+    </HashRouter>
+  );
 }
 
 export default App;
